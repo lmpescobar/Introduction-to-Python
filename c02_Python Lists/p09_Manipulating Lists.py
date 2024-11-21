@@ -2,65 +2,75 @@
 # Manipulación de listas en Python
 
 # Descripción del ejercicio:
-# En este ejercicio, aprenderás cómo manipular listas en Python. Esto incluye:
-# 1. Cambiar elementos de una lista.
-# 2. Agregar nuevos elementos.
-# 3. Eliminar elementos.
-# 4. Comprender cómo funcionan las listas en Python "detrás de escena".
+# Este ejercicio cubre los principales conceptos de manipulación de listas en Python:
+# - Cambiar elementos específicos en una lista.
+# - Modificar múltiples elementos (slicing).
+# - Agregar elementos nuevos a una lista.
+# - Eliminar elementos existentes.
+# - Comprender cómo funcionan las referencias y copias de listas en la memoria.
 
-# Conceptos clave:
-# - Cambiar elementos: Usa índices o slices con corchetes y el signo igual para actualizar valores.
-# - Agregar elementos: Usa el operador `+` para combinar listas.
-# - Eliminar elementos: Usa `del` para remover elementos específicos.
-# - Copiar listas: La asignación `=` crea referencias, no copias independientes.
+# Concepto clave: Cambiar elementos en listas
+# Puedes usar corchetes e índices para actualizar elementos. Por ejemplo, si la altura de "dad" en la lista `fam`
+# ya no es correcta, puedes actualizarla usando el índice correspondiente.
 
-# Código en Python:
-# Crear la lista original `fam`
+# Crear la lista `fam` inicial
 fam = ["liz", 1.73, "emma", 1.68, "mom", 1.71, "dad", 1.89]
 
-# Cambiar elementos de la lista
-# Actualizar la altura de "dad" a 1.86
-fam[7] = 1.86  # Cambiar el último elemento
+# Cambiar un elemento específico
+# Actualizar la altura de "dad" de 1.89 a 1.86
+fam[7] = 1.86
 print("Lista después de actualizar la altura de 'dad':", fam)
 
-# Cambiar un slice completo
-# Actualizar "liz" y su altura
+# Cambiar múltiples elementos a la vez
+# Usar slicing para modificar "liz" y su altura
 fam[0:2] = ["lisa", 1.74]
-print("Lista después de cambiar 'liz' a 'lisa':", fam)
+print("Lista después de actualizar 'liz' a 'lisa' y su altura:", fam)
 
-# Agregar elementos a la lista
-# Añadir tu propio nombre y altura
+# Concepto clave: Agregar elementos a una lista
+# Usar el operador "+" para combinar listas
+# Agregar tu propio nombre y altura
 fam_ext = fam + ["me", 1.79]
 print("Lista después de agregar tu nombre y altura:", fam_ext)
 
-# Eliminar elementos de la lista
-# Eliminar "emma" y su altura
-del fam[2]  # Elimina "emma"
-del fam[2]  # Elimina la altura de "emma"
+# Concepto clave: Eliminar elementos de una lista
+# Usar `del` para eliminar un elemento basado en su índice
+# Eliminar "emma" (índice 2) y su altura (índice 2 nuevamente después del primer `del`)
+del fam[2]  # Eliminar "emma"
+del fam[2]  # Eliminar la altura de "emma"
 print("Lista después de eliminar a 'emma' y su altura:", fam)
 
-# Detrás de escena: referencias y copias
-# Crear una nueva lista `x`
+# Concepto clave: Detrás de las escenas (Referencias y copias)
+# Crear una lista `x`
 x = ["a", "b", "c"]
-# Copiar `x` en `y` usando el signo igual
-y = x
-# Cambiar un elemento en `y`
+
+# Asignar `x` a `y` usando el signo igual
+y = x  # Esto no crea una copia, sino una referencia a la misma lista en memoria.
+
+# Cambiar un elemento de `y`
 y[1] = "z"
-print("Lista x después de modificar y:", x)  # Cambia también en `x`
+print("Lista x después de modificar y (referencia):", x)  # `x` también cambia.
 
-# Crear una copia independiente de la lista
-z = list(x)  # Usar la función `list`
+# Crear una copia independiente de `x` usando `list()`
+z = list(x)
 z[1] = "y"
-print("Lista x después de modificar una copia independiente:", x)  # No cambia en `x`
-print("Lista z independiente:", z)
+print("Lista x después de modificar una copia independiente:", x)  # `x` permanece igual.
+print("Lista z (independiente):", z)
 
-# Explicación del código:
-# - Las líneas 16-17 actualizan un elemento específico usando un índice.
-# - Las líneas 20-21 actualizan un slice de la lista, reemplazando los primeros dos elementos.
-# - Las líneas 24-25 combinan `fam` con otra lista usando el operador `+`.
-# - Las líneas 28-29 eliminan dos elementos consecutivos usando `del`.
-# - Las líneas 33-39 muestran cómo el signo igual crea una referencia, no una copia, lo que significa que los cambios en `y` afectan a `x`.
-# - Las líneas 42-45 crean una copia independiente con la función `list`, lo que garantiza que los cambios en `z` no afectan a `x`.
+# Crear otra copia independiente usando slicing
+w = x[:]
+w[1] = "b"
+print("Lista x después de modificar otra copia independiente (slicing):", x)  # `x` no cambia.
+print("Lista w (independiente):", w)
 
-# Practica:
-# Experimenta cambiando otros elementos, agregando diferentes datos o copiando listas de diversas maneras.
+# Explicación:
+# - Línea 18: Se usa un índice único para actualizar el último elemento de `fam`.
+# - Línea 22: Se usa slicing para reemplazar los dos primeros elementos de la lista.
+# - Línea 26: Se combina `fam` con otra lista usando `+` para agregar nuevos elementos.
+# - Líneas 30-32: Se elimina "emma" y su altura usando `del`, y los índices de los elementos siguientes se ajustan.
+# - Líneas 36-40: Se muestra cómo una asignación con `=` crea una referencia, no una copia, afectando tanto `x` como `y`.
+# - Líneas 43-44: Se crea una copia independiente usando `list()`, permitiendo cambios sin afectar la lista original.
+# - Líneas 47-48: Se crea otra copia independiente con slicing (`[:]`), logrando el mismo efecto que `list()`.
+
+# Conceptos adicionales:
+# - El uso de referencias permite compartir listas en memoria, pero puede causar modificaciones inesperadas.
+# - Copiar listas con `list()` o slicing (`[:]`) asegura que las listas sean independientes.
